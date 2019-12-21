@@ -1,0 +1,23 @@
+{% include 'head.html' %}
+{% include 'home_page.html' %}
+{% load staticfiles %}
+<html>
+<body style="background: aliceblue">
+<table align="center" border="2">
+    <form action="{% url 'user_login' %}" method="post"> {% csrf_token %}
+    </br></br></br></br>
+        <tr align="center"> <th style="color:red;" > User Login</th> </tr>
+        <tr><td> <input type="text" placeholder="User ID" required name="userid" ></td> </tr>
+         <tr><td> <input type="password" placeholder="Password" required name="password" ></td> </tr>
+           <tr> <td align="center"> <button type="submit"> Login </button></td>  </tr>
+  </form>
+</table>
+
+{%  if message  %}
+      <span> <h3 style="color: red" align="center"> {{ message }}</h3></span>
+   {% endif %}
+
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+
+{% include 'user/user_header.html' %}
+
+    <table align="center" border="2" style="color: red">
+    <tr>
+        <th> TaskName</th>
+        <th> User ID</th>
+        <th> Task Status</th>
+    </tr>
+
+    {% for x in data %}
+
+        <tr>
+        <td> {{ x.taskname }}</td>
+        <td> {{ x.empID }}</td>
+        <td><button> <a href="{% url 'task_completed' %}"> Task Completed</a> </button></td>
+        </tr>
+    {% endfor %}
+    </table>
+  {{ message }}

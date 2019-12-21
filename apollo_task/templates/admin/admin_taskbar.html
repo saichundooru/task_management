@@ -1,0 +1,89 @@
+{% include 'head.html' %}
+{% include 'admin/admin_header.html' %}
+<html>
+<body>
+<table align="center" border="2">
+{% if create_user %}
+		  <form action="{% url 'saving_userdetails' %}" method="post">
+			  {% csrf_token %}
+			<table border="2" align="center">
+			</br> </br> </br>
+				<tr align="center"> <th style="color: red" colspan="2">Create User</th></tr>
+				<tr> <td> Employee Id: </td> <td><input type="number" placeholder="employeeid" required name="empid"> </td></tr>
+				<tr> <td>Employee Name:  </td> <td><input type="text" placeholder="empname" name="empname" required> </td></tr>
+				<tr> <td> Contact No: </td> <td> <input type="number" placeholder="contactnumber" name="cno" required></td></tr>
+				<tr> <td> Email Id: </td> <td> <input type="email" placeholder="email" name="email" required></td></tr>
+				<tr> <td> Designation: </td> <td>
+					<select name="designation">
+							 <option value="select"> select</option>
+							 <option value="Sotware Developer"> Software Developer</option>
+							 <option value="Manager"> Manager</option>
+							 <option value="QA"> QA</option>
+							 <option value="Asst Manager"> Asst Manager</option>
+				</select></td></tr>
+				<tr> <td> Password:  </td> <td><input type="password" placeholder="password" name="pwd" required></td></tr>
+				<tr> <td align="center" colspan="2"> <button type="submit"> Submit</button></td></tr>
+			</table>
+		 </form>
+        </br>
+		   <span><h1 style="text-align: center;font-size: 25px;color: green">{{ message }}</h1>     </span>
+        {% endif %}
+</table>
+{% if view_users %}
+    <table align="center" border="1">
+        <tr><th>IDNO</th>
+         <th>NAME</th>
+         <th>CONTACT</th>
+         <th>EMAIL</th>
+         <th>DESIGNATION</th></tr>
+            {% for x in view_users %}
+                <tr><td>{{ x.empID }}</td>
+                    <td>{{ x.empName }}</td>
+                    <td>{{ x.contactNo }}</td>
+                    <td>{{ x.emailID }}</td>
+                    <td>{{ x.designation }}</td></tr>
+                    {% endfor %}
+             </table>
+{% endif %}
+{% if task_data1 %}
+    <table align="center"  border="1">
+	<tr style="color: red">
+     <th>EmployeeID</th>
+	<th>Name</th>
+	<th>Mail</th>
+	<th>Designation</th>
+	<th>Number</th>
+	<th>Task</th>
+	<th>Status</th>
+	<th>Delete</th>
+    </tr>
+   {% for x in x1 %}
+	 <tr> <td> {{ x.empID_id}}</td>
+        <td> {{ x.empID.empName }}</td>
+         <td> {{ x.empID.emailID }}</td>
+         <td> {{ x.empID.designation }}</td>
+         <td> {{ x.empID.contactNo }}</td>
+          <td>{{ x.taskname }} </td>
+          <td>{{ x.empID.status }} </td>
+       <td><a href="{% url 'delete' %}?tno={{ x.taskno }}">Yes</a> </td>
+         {% endfor %} </tr>
+</table>
+{% endif %}
+{#{% if assigh_task %}#}
+{#    <table>#}
+{#    <tr>#}
+{#        <td> {{ forms.as_p }}</td>#}
+{#    </tr>#}
+{#    </table>#}
+{#{% endif %}#}
+{% if assign_task %}
+    <form action="{% url 'save_task' %}" method="post"> {% csrf_token %}
+      <table align="center">
+        <tr align="center"> <th  style="color: red"> Assign Task</th> </tr>
+        <tr> <th> {{ form.as_p }}</th></tr>
+        <<tr align="center"> <th> <button type="submit"> Save</button></th></tr>
+        </table>
+       </form>
+{% endif %}
+</body>
+</html>
