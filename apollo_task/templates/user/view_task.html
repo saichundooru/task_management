@@ -8,13 +8,15 @@
         <th> Task Status</th>
     </tr>
 
-    {% for x in data %}
-
+    {% if data %}
+          {% for x in data %}
         <tr>
         <td> {{ x.taskname }}</td>
         <td> {{ x.empID }}</td>
-        <td><button> <a href="{% url 'task_completed' %}"> Task Completed</a> </button></td>
+        <td><button> <a href="{% url 'task_completed' %}?name={{ x.taskname }}" style="text-decoration: none"> Task Completed</a> </button></td>
         </tr>
-    {% endfor %}
+           {% endfor %}
+    {% endif %}
+
     </table>
-  {{ message }}
+

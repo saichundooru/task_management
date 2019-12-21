@@ -64,7 +64,7 @@
          <td> {{ x.empID.designation }}</td>
          <td> {{ x.empID.contactNo }}</td>
           <td>{{ x.taskname }} </td>
-          <td>{{ x.empID.status }} </td>
+          <td>{{ x.status }} </td>
        <td><a href="{% url 'delete' %}?tno={{ x.taskno }}">Yes</a> </td>
          {% endfor %} </tr>
 </table>

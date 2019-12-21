@@ -7,7 +7,7 @@ class EmployeeModel(models.Model):
     emailID=models.EmailField(unique=True)
     designation=models.CharField(max_length=30)
     password=models.CharField(max_length=10)
-    status = models.CharField(max_length=30,default=False)
+
 
     def __str__(self):
         return '{}'.format(self.empID)

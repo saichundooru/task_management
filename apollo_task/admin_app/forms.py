@@ -8,6 +8,6 @@ class Taskform(forms.ModelForm):
         model=TaskAssigning
         fields= ['taskname','empID']
 
-    def __int__(self,empID):
-        self.empID= empID
-        return empID
+    # def __int__(self,empID):
+    #     self.empID= empID
+    #     return empID

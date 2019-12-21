@@ -39,37 +39,28 @@ def save_pwd(request):
 
 
 def view_task(request):
-    session_id = request.session['empID']
-    print(session_id)
-    try:
-        res1 = TaskAssigning.objects.filter(empID_id=session_id,status='pending')
-        print(res1)
-        # print(res1.taskname)
-        # print(res1.taskno)
-        # print(res1.empID.status)
-        # if res1.empID.status == 'pending':
-        return render(request,'user/view_task.html',{'data':res1})
-        # else:
-        #     return render(request,'user/view_task.html',{"message": "Task Completed Till Now not Assinged"})
-    except:
-        return render(request, 'user/view_task.html', {"msg": "Task Till Now not Assinged"})
-
+    # session_id = request.session['empID']
+    # print(session_id)
+    # try:
+    #     res1 = TaskAssigning.objects.filter(empID_id=session_id,status='pending')
+    #     print(res1)
+    #     # print(res1.taskname)
+    #     # print(res1.taskno)
+    #     # print(res1.empID.status)
+    #     # if res1.empID.status == 'pending':
+    #     return render(request,'user/view_task.html',{'data':res1})
+    #     # else:
+    #     #     return render(request,'user/view_task.html',{"message": "Task Completed Till Now not Assinged"})
+    # except:
+    #     return render(request, 'user/view_task.html', {"msg": "Task Till Now not Assinged"})
+    res=request.session['empID']
+    i = TaskAssigning.objects.filter(status='pending',empID_id=res)
+    return render(request, 'user/view_task.html',{"data": i,"msg":"Task Completed Till Now not Assinged"})
 
 def task_completed(request):
-    # res=request.GET['x']
-    # print('empid',res)
-    session_id = request.session['empID']
-    print('sessionid',session_id)
-    try:
-        t = EmployeeModel.objects.get(empID=session_id)
-        print(t)
-        t.status="completed"
-        print(t.status)
-        t.save()
-        print(t.save())
-        # t.status = 'Completed'
-        # t.save()
-        return render(request, 'user/user_taskbar.html')
-    except:
-        return render(request, "user/user_login_page.html", {"message": "SESSION EXPIRED"})
-
+    na = request.GET['name']
+    print(na)
+    i = TaskAssigning.objects.get(taskname=na)
+    i.status = 'completed'
+    i.save()
+    return redirect('viewtask')

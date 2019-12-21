@@ -37,7 +37,7 @@ def saving_userdetails(request):
     email = request.POST.get('email')
     des = request.POST.get('designation')
     pwd = request.POST.get('pwd')
-    EmployeeModel(empID=id, empName=name, contactNo=cno, emailID=email, designation=des, password=pwd,status='pending').save()
+    EmployeeModel(empID=id, empName=name, contactNo=cno, emailID=email, designation=des, password=pwd).save()
     return render(request, 'admin/admin_taskbar.html',{'create_user': True, 'message': 'Details Saved Sucessfully'})
 
 
